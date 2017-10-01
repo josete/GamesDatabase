@@ -92,4 +92,10 @@ public class DataBaseManagerTest {
         }
     }
     
+    @AfterClass 
+    public static void remove(){
+        DataBaseManager manager = new DataBaseManager("test.s3db");
+        manager.clearDatabase();
+    }
+    
 }

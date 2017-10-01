@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -171,6 +172,99 @@ public class DataBaseManager {
             Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return name;
+    }
+    
+    public ArrayList<String> getAllDevelopers(){
+        ArrayList<String> developers = new ArrayList<>();
+        try {
+            String sql = "select name from Developer";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                developers.add(r.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return developers;
+    }
+    
+    public ArrayList<String> getAllGenres(){
+        ArrayList<String> genres = new ArrayList<>();
+        try {
+            String sql = "select name from Genre";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                genres.add(r.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return genres;
+    }
+    
+    public ArrayList<String> getAllPlatforms(){
+        ArrayList<String> platforms = new ArrayList<>();
+        try {
+            String sql = "select name from Platform";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                platforms.add(r.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return platforms;
+    }
+    
+    public ArrayList<String> getAllFormats(){
+        ArrayList<String> formats = new ArrayList<>();
+        try {
+            String sql = "select name from Format";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                formats.add(r.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return formats;
+    }
+    
+    public ArrayList<Game> getAllGames(){
+        ArrayList<Game> games = new ArrayList<>();
+        try {
+            String sql = "select * from Game";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                games.add(new Game(r.getString(2),r.getString(3), r.getString(4), r.getString(5), r.getString(6)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return games;
+    }
+
+    void clearDatabase() {
+        try {
+            String sql = "delete from Developer";
+            Statement consulta = conn.createStatement();
+            consulta.execute(sql);
+            sql = "delete from Genre";
+            consulta.execute(sql);
+            sql = "delete from Platform";
+            consulta.execute(sql);
+            sql = "delete from Format";
+            consulta.execute(sql);
+            sql = "delete from Game";
+            consulta.execute(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

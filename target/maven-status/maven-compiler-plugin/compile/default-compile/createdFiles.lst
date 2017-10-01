@@ -1,3 +1,4 @@
 gamesdatabase\MainApp.class
 gamesdatabase\FXMLController.class
 database\DataBaseManager.class
+database\Game.class
