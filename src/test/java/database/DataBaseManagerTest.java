@@ -20,8 +20,15 @@ public class DataBaseManagerTest {
     
     @Test
     public void connectionTest(){
-        DataBaseManager manager = new DataBaseManager("databaseTest.db");
+        DataBaseManager manager = new DataBaseManager("test.s3db");
         assertNotNull(manager.conn);
+    }
+    
+    @Test
+    public void insertDeveloper(){
+        DataBaseManager manager = new DataBaseManager("test.s3db");
+        int id = manager.insertDeveloper("EA");
+        assertEquals("EA", manager.getDeveloperById(id));
     }
     
 }
