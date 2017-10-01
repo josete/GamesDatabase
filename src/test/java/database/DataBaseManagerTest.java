@@ -18,6 +18,10 @@ import static org.junit.Assert.*;
  */
 public class DataBaseManagerTest {
     
-    
+    @Test
+    public void connectionTest(){
+        DataBaseManager manager = new DataBaseManager("databaseTest.db");
+        assertNotNull(manager.conn);
+    }
     
 }
