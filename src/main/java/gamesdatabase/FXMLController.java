@@ -3,6 +3,7 @@ package gamesdatabase;
 import database.DataBaseManager;
 import database.Game;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ public class FXMLController implements Initializable {
     private ComboBox developer;
     @FXML
     private ComboBox genre;
+    @FXML
+    private ComboBox genreSort;
     @FXML
     private ComboBox platform;
     @FXML
@@ -44,7 +47,7 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         manager = new DataBaseManager("database.s3db");
         refreshCombos();
-        populateTable();
+        populateTable(manager.getAllGames());
     }
     
     @FXML
@@ -63,9 +66,16 @@ public class FXMLController implements Initializable {
         clearData();
     }
     
+    @FXML
+    private void sortByGenre(){
+        String genre = this.genreSort.getValue().toString();
+        populateTable(manager.getGamesByGenre(genre));
+    }
+    
     private void refreshCombos(){
         developer.setItems(FXCollections.observableList(manager.getAllDevelopers()));
         genre.setItems(FXCollections.observableList(manager.getAllGenres()));
+        genreSort.setItems(FXCollections.observableList(manager.getAllGenres()));
         platform.setItems(FXCollections.observableList(manager.getAllPlatforms()));
         format.setItems(FXCollections.observableList(manager.getAllFormats()));
     }
@@ -78,12 +88,12 @@ public class FXMLController implements Initializable {
         format.getSelectionModel().clearSelection();
     }
     
-    private void populateTable(){
+    private void populateTable(ArrayList<Game> games){
         titleColumn.setCellValueFactory(new PropertyValueFactory<Game,String>("title"));
         developerColumn.setCellValueFactory(new PropertyValueFactory<Game,String>("developer"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<Game,String>("genre"));
         platformColumn.setCellValueFactory(new PropertyValueFactory<Game,String>("platform"));
         formatColumn.setCellValueFactory(new PropertyValueFactory<Game,String>("format"));
-        table.setItems(FXCollections.observableArrayList(manager.getAllGames()));
+        table.setItems(FXCollections.observableArrayList(games));
     }
 }

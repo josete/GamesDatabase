@@ -249,6 +249,21 @@ public class DataBaseManager {
         return games;
     }
 
+    public ArrayList<Game> getGamesByGenre(String genre) {
+        ArrayList<Game> games = new ArrayList<>();
+        try {
+            String sql = "select * from Game where genre='"+genre+"'";
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            while(r.next()){
+                games.add(new Game(r.getString(2),r.getString(3), r.getString(4), r.getString(5), r.getString(6)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return games;
+    }
+    
     void clearDatabase() {
         try {
             String sql = "delete from Developer";

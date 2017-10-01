@@ -92,6 +92,22 @@ public class DataBaseManagerTest {
         }
     }
     
+    @Test
+    public void sortGamesByGenre(){
+        DataBaseManager manager = new DataBaseManager("test.s3db");
+        manager.insertGame("Skyrim","Bethesda","Rol","PC","Steam");
+        manager.insertGame("Skyrim1","Bethesda","Accion","PC","Steam");
+        manager.insertGame("Skyrim2","Bethesda","Aventuras","PC","Steam");
+        manager.insertGame("Skyrim3","Bethesda","Rol","PC","Steam");
+        int gamesNumber = manager.getGamesByGenre("Rol").size();
+        assertEquals(2, gamesNumber);
+        try {
+            manager.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManagerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @AfterClass 
     public static void remove(){
         DataBaseManager manager = new DataBaseManager("test.s3db");

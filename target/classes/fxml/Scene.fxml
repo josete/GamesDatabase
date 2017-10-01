@@ -40,6 +40,9 @@
                         <TableColumn fx:id="formatColumn" prefWidth="87.0" text="Format" />
                     </columns>
                   </TableView>
+                  <Label layoutX="28.0" layoutY="21.0" text="Sort by Genre:" />
+                  <ComboBox fx:id="genreSort" layoutX="124.0" layoutY="17.0" prefWidth="150.0" />
+                  <Button layoutX="354.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortByGenre" text="Sort" />
                </children></AnchorPane>
       </content>
     </Tab>
