@@ -60,4 +60,117 @@ public class DataBaseManager {
         return name;
     }
     
+    public int insertFormat(String name){
+        int id = 0;
+        try {
+            String sql = "insert into Format (name) values ('"+name+"')";
+            Statement consulta = conn.createStatement();
+            consulta.execute(sql);
+            sql = "SELECT last_insert_rowid()";
+            ResultSet r = consulta.executeQuery(sql);
+            id = r.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public String getFormatById(int id){
+        String name = null;
+        try {
+            String sql = "select name from Format where id = "+id;
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            name = r.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+    
+    public int insertPlatform(String name){
+        int id = 0;
+        try {
+            String sql = "insert into Platform (name) values ('"+name+"')";
+            Statement consulta = conn.createStatement();
+            consulta.execute(sql);
+            sql = "SELECT last_insert_rowid()";
+            ResultSet r = consulta.executeQuery(sql);
+            id = r.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public String getPlatformById(int id){
+        String name = null;
+        try {
+            String sql = "select name from Platform where id = "+id;
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            name = r.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+    
+    public int insertGenre(String name){
+        int id = 0;
+        try {
+            String sql = "insert into Genre (name) values ('"+name+"')";
+            Statement consulta = conn.createStatement();
+            consulta.execute(sql);
+            sql = "SELECT last_insert_rowid()";
+            ResultSet r = consulta.executeQuery(sql);
+            id = r.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public String getGenreById(int id){
+        String name = null;
+        try {
+            String sql = "select name from Genre where id = "+id;
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            name = r.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+
+    public int insertGame(String title, String developer, String genre, String platform, String format) {
+         int id = 0;
+        try {
+            String sql = "insert into Game (title,developer,genre,platform,format) values ('"+title+"','"+developer+"'"
+                    + ",'"+genre+"','"+platform+"','"+format+"')";
+            Statement consulta = conn.createStatement();
+            consulta.execute(sql);
+            sql = "SELECT last_insert_rowid()";
+            ResultSet r = consulta.executeQuery(sql);
+            id = r.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public String getGameNameById(int id){
+        String name = null;
+        try {
+            String sql = "select title from Game where id = "+id;
+            Statement consulta = conn.createStatement();
+            ResultSet r = consulta.executeQuery(sql);
+            name = r.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+    
 }
