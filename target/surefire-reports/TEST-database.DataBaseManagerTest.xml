@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="database.DataBaseManagerTest" time="0.979" tests="7" errors="0" skipped="0" failures="0">
+<testsuite name="database.DataBaseManagerTest" time="12.607" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_77\jre\bin"/>
@@ -61,11 +61,12 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="insertDeveloper" classname="database.DataBaseManagerTest" time="0.232"/>
-  <testcase name="insertPlatform" classname="database.DataBaseManagerTest" time="0.082"/>
-  <testcase name="insertGenre" classname="database.DataBaseManagerTest" time="0.14"/>
-  <testcase name="insertFormat" classname="database.DataBaseManagerTest" time="0.068"/>
-  <testcase name="sortGamesByGenre" classname="database.DataBaseManagerTest" time="0.376"/>
-  <testcase name="insertGame" classname="database.DataBaseManagerTest" time="0.081"/>
-  <testcase name="connectionTest" classname="database.DataBaseManagerTest" time="0"/>
+  <testcase name="insertDeveloper" classname="database.DataBaseManagerTest" time="1.014"/>
+  <testcase name="insertPlatform" classname="database.DataBaseManagerTest" time="2.496"/>
+  <testcase name="insertGenre" classname="database.DataBaseManagerTest" time="1.513"/>
+  <testcase name="insertFormat" classname="database.DataBaseManagerTest" time="1.638"/>
+  <testcase name="sortGamesByGenre" classname="database.DataBaseManagerTest" time="1.841"/>
+  <testcase name="checkOrderAlphabetical" classname="database.DataBaseManagerTest" time="1.825"/>
+  <testcase name="insertGame" classname="database.DataBaseManagerTest" time="1.204"/>
+  <testcase name="connectionTest" classname="database.DataBaseManagerTest" time="1.076"/>
 </testsuite>

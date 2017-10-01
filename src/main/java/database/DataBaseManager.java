@@ -237,7 +237,7 @@ public class DataBaseManager {
     public ArrayList<Game> getAllGames(){
         ArrayList<Game> games = new ArrayList<>();
         try {
-            String sql = "select * from Game";
+            String sql = "select * from Game order by title";
             Statement consulta = conn.createStatement();
             ResultSet r = consulta.executeQuery(sql);
             while(r.next()){

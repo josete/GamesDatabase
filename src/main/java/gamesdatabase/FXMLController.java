@@ -64,6 +64,7 @@ public class FXMLController implements Initializable {
         manager.insertFormat(format);
         refreshCombos();
         clearData();
+        populateTable(manager.getAllGames());
     }
     
     @FXML

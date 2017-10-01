@@ -6,20 +6,25 @@
 package database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
  * @author Familia
  */
 public class DataBaseManagerTest {
+    
+    @Before
+    public void before(){
+        DataBaseManager manager = new DataBaseManager("test.s3db");
+        manager.clearDatabase();
+    }
     
     @Test
     public void connectionTest(){
@@ -37,6 +42,7 @@ public class DataBaseManagerTest {
         DataBaseManager manager = new DataBaseManager("test.s3db");
         int id = manager.insertDeveloper("EA");
         assertEquals("EA", manager.getDeveloperById(id));
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
@@ -49,6 +55,7 @@ public class DataBaseManagerTest {
         DataBaseManager manager = new DataBaseManager("test.s3db");
         int id = manager.insertFormat("CD");
         assertEquals("CD", manager.getFormatById(id));
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
@@ -61,6 +68,7 @@ public class DataBaseManagerTest {
         DataBaseManager manager = new DataBaseManager("test.s3db");
         int id = manager.insertPlatform("PC");
         assertEquals("PC", manager.getPlatformById(id));
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
@@ -73,6 +81,7 @@ public class DataBaseManagerTest {
         DataBaseManager manager = new DataBaseManager("test.s3db");
         int id = manager.insertGenre("Shooter");
         assertEquals("Shooter", manager.getGenreById(id));
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
@@ -85,6 +94,24 @@ public class DataBaseManagerTest {
         DataBaseManager manager = new DataBaseManager("test.s3db");
         int id = manager.insertGame("Skyrim","Bethesda","Rol","PC","Steam");
         assertEquals("Skyrim", manager.getGameNameById(id));
+        manager.clearDatabase();
+        try {
+            manager.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseManagerTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void checkOrderAlphabetical(){
+        DataBaseManager manager = new DataBaseManager("test.s3db");
+        manager.insertGame("Skyrim","Bethesda","Rol","PC","Steam");
+        manager.insertGame("Akyrim","Bethesda","Accion","PC","Steam");
+        manager.insertGame("Jkyrim","Bethesda","Aventuras","PC","Steam");
+        manager.insertGame("Ckyrim","Bethesda","Rol","PC","Steam");
+        ArrayList<Game> list = manager.getAllGames();
+        assertEquals("Akyrim", list.get(0).getTitle());
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
@@ -101,6 +128,7 @@ public class DataBaseManagerTest {
         manager.insertGame("Skyrim3","Bethesda","Rol","PC","Steam");
         int gamesNumber = manager.getGamesByGenre("Rol").size();
         assertEquals(2, gamesNumber);
+        manager.clearDatabase();
         try {
             manager.conn.close();
         } catch (SQLException ex) {
