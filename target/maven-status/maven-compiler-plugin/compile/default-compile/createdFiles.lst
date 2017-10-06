@@ -1,4 +1,9 @@
+database\SteamGame.class
+files\ReadSteamFolder.class
+files\VdfAndJsonUtils.class
+files\VdfAndJsonUtils$1.class
 gamesdatabase\MainApp.class
 gamesdatabase\FXMLController.class
 database\DataBaseManager.class
 database\Game.class
+files\ReadSteamFolder$1.class
